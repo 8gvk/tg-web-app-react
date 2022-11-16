@@ -10,7 +10,7 @@ const Form = () => {
     const [apart, setApart] = useState('');
     const [subject,setSubject] = useState('physical');
 
-    const {tg} = useTelegram()
+    const {tg} = useTelegram();
 
     useEffect(()=>{
         tg.MainButton.setParams({
