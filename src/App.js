@@ -1,6 +1,7 @@
 import './App.css';
 import {useEffect} from "react";
-
+import Header from "./components/Header/Header";
+const tg = window.Telegram.WebApp;
 
 function App() {
     useEffect(()=>{
@@ -12,7 +13,8 @@ function App() {
 
   return (
     <div className="App">
-      work
+      В разработке
+        <Header/>
 
     </div>
   );
