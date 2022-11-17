@@ -6,7 +6,7 @@ import {useTelegram} from "../../hooks/useTelegram";
 const Form = () => {
     const [city,setCity] = useState('');
     const [street, setStreet] = useState('');
-    const [home, setHome] = useState('');
+    const [hom, setHom] = useState('');
     const [apart, setApart] = useState('');
     const [subject,setSubject] = useState('physical');
 
@@ -16,12 +16,12 @@ const Form = () => {
         const data = {
             city,
             street,
-            home,
+            hom,
             apart,
             subject
         }
         tg.sendData(JSON.stringify(data));
-    }, [city, street, home, apart, subject])
+    }, [city, street, hom, apart, subject])
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)
@@ -38,13 +38,13 @@ const Form = () => {
     },[])
 
     useEffect(()=>{
-        if(!city || !street || !home || !apart) {
+        if(!city || !street || !hom || !apart) {
             tg.MainButton.hide();
         }else{
             tg.MainButton.show();
         }
 
-    },[city, street, home, apart])
+    },[city, street, hom, apart])
 
     const onChangeCity = (e) => {
         setCity(e.target.value)
@@ -53,7 +53,7 @@ const Form = () => {
         setStreet(e.target.value)
     }
     const onChangeHome = (e) => {
-        setHome(e.target.value)
+        setHom(e.target.value)
     }
     const onChangeApart= (e) => {
         setApart(e.target.value)
@@ -88,7 +88,7 @@ const Form = () => {
                 min={'1'}
                 max={'9999'}
                 placeholder={'Дом'}
-                value={home}
+                value={hom}
                 onChange={onChangeHome}
             />
             <input
