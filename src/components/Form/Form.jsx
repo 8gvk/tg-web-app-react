@@ -12,7 +12,7 @@ const Form = () => {
 
     const {tg} = useTelegram();
 
-    const onSendData = useCallback(() => {
+    const onSendData = (() => {
         const data = {
             city,
             street,
@@ -29,6 +29,8 @@ const Form = () => {
             tg.offEvent('mainButtonClicked', onSendData)
         }
     }, [onSendData])
+
+
 
 
     useEffect(()=>{
