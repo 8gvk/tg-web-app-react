@@ -31,7 +31,7 @@ const ProductList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId,
         }
-        fetch('http://213.232.228.221:3001/web-data', {
+        fetch('http://213.232.228.221:3000/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,13 +39,6 @@ const ProductList = () => {
             body: JSON.stringify(data)
         })
     }, [addedItems])
-
-    useEffect(() => {
-        tg.onEvent('mainButtonClicked', onSendData)
-        return () => {
-            tg.offEvent('mainButtonClicked', onSendData)
-        }
-    }, [onSendData])
 
     const onAdd = (product) => {
         const alreadyAdded = addedItems.find(item => item.id === product.id);
@@ -59,15 +52,31 @@ const ProductList = () => {
 
         setAddedItems(newItems)
 
-        if(newItems.length === 0) {
-            tg.MainButton.hide();
+
+    }
+
+    useEffect(() => {
+        tg.onEvent('mainButtonClicked', onSendData)
+        return () => {
+            tg.offEvent('mainButtonClicked', onSendData)
+        }
+    }, [onSendData])
+
+    useEffect(()=> {
+        if (newItems.length === 0) {
+            tg.MainButton.disable();
         } else {
-            tg.MainButton.show();
+            tg.MainButton.enable();
             tg.MainButton.setParams({
                 text: `Купить ${getTotalPrice(newItems)}`
             })
         }
-    }
+    })
+
+
+
+
+
 
     return (
         <div className={'list'}>
